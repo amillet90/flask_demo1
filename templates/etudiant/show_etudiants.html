@@ -7,38 +7,37 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="icon"  href="{{ url_for('static', filename='iconeweb.ico') }}" />
 
-    <link rel="stylesheet" href="{{ url_for('static', filename='mes_styles.css') }}" >
-    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap/css/bootstrap.css') }}" >
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <title>Etudiants</title>
 </head>
 <body>
 
-{#{{ etudiants }}#}
-<h1>listes des étudiants<img src="{{ url_for('static', filename='image_iut.jpeg') }}" alt="image iut"  /></h1>
+<div class="container">
+    <h1>listes des étudiants<img src="{{ url_for('static', filename='image_iut.jpeg') }}" alt="image iut"  /></h1>
 
-<a href="/etudiant/add" >ajouter un étudiant</a>
+    <a href="/etudiant/add" class="btn btn-success">ajouter un étudiant</a>
 
-{% if etudiants | length >= 1 %}
-    <table>
-        <tr>
-            <th>id</th><th>nom</th><th>groupe</th>
-        </tr>
-        {% for etudiant in etudiants %}
+    {% if etudiants | length >= 1 %}
+        <table class="table">
             <tr>
-                <td>{{ etudiant.id }}</td>
-                <td>{{ etudiant.nom }}</td>
-                <td>{{ etudiant.groupe_id }}</td>
-                <td>
-                      <a href="/etudiant/edit?id={{ etudiant.id }}">editer</a>&nbsp;
-                      <a href="/etudiant/delete?id={{ etudiant.id }}" >supprimer</a>
-                  </td>
+                <th>id</th><th>nom</th><th>groupe</th><th>actions</th>
             </tr>
-        {% endfor %}
-    </table>
-{% else %}
-    <h2> la liste des étudiants est vide</h2>
-{% endif %}
-
-<script src="{{ url_for('static', filename='bootstrap/js/bootstrap.js') }}"></script>    
+            {% for etudiant in etudiants %}
+                <tr>
+                    <td>{{ etudiant.id }}</td>
+                    <td>{{ etudiant.nom }}</td>
+                    <td>{{ etudiant.groupe_id }}</td>
+                    <td>
+                        <a href="/etudiant/edit?id={{ etudiant.id }}" class="btn btn-success">editer</a>&nbsp;
+                        <a href="/etudiant/delete?id={{ etudiant.id }}" class="btn btn-danger">supprimer</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <h2> la liste des étudiants est vide</h2>
+    {% endif %}
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 </body>
 </html>
