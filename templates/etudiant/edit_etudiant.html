@@ -20,10 +20,12 @@
             {{ etudiant.groupe }}
             <div class="mb-3">
                 <label for="groupe" class="form-label">Groupe de l'étudiant :</label>
-                <select class="form-select" id="groupe" required name="groupe">
-                    <option value="A1">A1</option>
-                    <option value="A2">A2</option>
-                    <option value="B1">B1</option>
+                <select name="id_groupe" id="groupe" class="form-select">
+                    {% for groupe in groupes %}
+                        <option value="{{ groupe.id }}"
+                                {% if etudiant.groupe_id is defined and groupe.id == etudiant.groupe_id %}selected{% endif %}
+                        > {{ groupe.libelle }} </option>
+                    {% endfor %}
                 </select>
             </div>
             <button type="submit" class="btn btn-primary">Enregistrer</button>

@@ -25,12 +25,9 @@
         </tr>
         {% for etudiant in etudiants %}
             <tr>
-                {# commentaires : autre notation possible, on affiche un element du dictionnaire
-                <td>{{ etudiant['id'] }}</td><td>{{ etudiant['nom'] }}</td><td>{{ etudiant['groupe'] }}</td>
-            #}
                 <td>{{ etudiant.id }}</td>
                 <td>{{ etudiant.nom }}</td>
-                <td>{{ etudiant.groupe }}</td>
+                <td>{{ etudiant.groupe_id }}</td>
                 <td>
                       <a href="/etudiant/edit?id={{ etudiant.id }}">editer</a>&nbsp;
                       <a href="/etudiant/delete?id={{ etudiant.id }}" >supprimer</a>
